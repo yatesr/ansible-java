@@ -1,0 +1,23 @@
+---
+# Install Oracle Java
+
+- name: Create {{java_install_dir}}
+  file: path={{java_install_dir}}
+        state=directory
+  tags: ['java']
+
+- name: Check for version of Java in {{java_install_dir}}
+  stat: path={{java_install_dir}}/{{java_version_dir}}
+  register: java_version_installed
+
+- name: Download Java to /tmp
+  shell: 'chdir=/tmp wget --no-cookies --no-check-certificate --header ''Cookie: oraclelicense=accept-securebackup-cookie'' {{java_download_url}}'
+  tags: ['java']
+  when: java_version_installed.stat.isdir is not defined
+
+- name: Extract Java
+  unarchive: copy=no
+             creates={{java_install_dir}}/{{java_version_dir}}
+             dest={{java_install_dir}}
+             src=/tmp/{{java_filename}}.tar.gz
+  tags: ['java']
