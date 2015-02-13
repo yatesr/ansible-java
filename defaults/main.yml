@@ -1,5 +1,8 @@
 ---
 # Java Vars
+# Attempt to set as defaults version (Debian bbased distros only)
+java_set_default: true
+
 java_install_dir: /opt/java
 
 java_download_url: "{{java_base}}{{java_version}}{{java_version_2}}/{{java_filename}}.tar.gz"

@@ -21,3 +21,12 @@
              dest={{java_install_dir}}
              src=/tmp/{{java_filename}}.tar.gz
   tags: ['java']
+
+- name: Add java to alternatives (Debian)
+  shell: 'update-alternatives --install /usr/bin/java java {{java_install_dir}}/{{java_version_dir}}/bin/java 10'
+  when: ansible_os_family == 'Debian'
+
+
+- name: Set java alternatives (Debian)
+  shell: 'echo 1 | update-alternatives --config java'
+  when: ansible_os_family == 'Debian' and java_set_default == 'true' 
