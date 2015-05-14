@@ -13,6 +13,6 @@ java_filename: "jre-{{java_version}}-linux-x64"
 
 ## Vars used to construct the filename/version above.
 java_base: http://download.oracle.com/otn-pub/java/jdk/
-java_version: 7u76
-java_version_2: -b13
-java_version_3: 1.7.0_76
+java_version: 7u80
+java_version_2: -b15
+java_version_3: 1.7.0_80
